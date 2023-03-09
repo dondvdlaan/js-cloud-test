@@ -6,7 +6,7 @@ const cors      = require('cors');
 
 // *************** Constants and variables ***************s
 const port      = 8000;
-const html = `
+const html      = `
 <!DOCTYPE html>
 <html>
   <head>
@@ -57,13 +57,15 @@ const html = `
 </html>
 `
 // *************** Middleware ***************
+// Connection to static site when URL is called
+server.use(express.static('public', {extensions:['html']}));
+
 server.use(express.json())
+
 // handshake, everybody will be responded
 server.use(cors());
 
 // *************** Routes ***************
-
-server.get("/", (req, res) => res.type('html').send(html));
 
 server.get('/hello', (req, res) => {
 
